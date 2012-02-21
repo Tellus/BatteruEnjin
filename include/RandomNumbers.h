@@ -6,7 +6,8 @@
 class RandomNumbers
 {
     public:
-        static float get_number(float start, float end);
+        static float get_float(float start, float end);
+		static int get_int(int start, int end);
     protected:
     private:
 };
