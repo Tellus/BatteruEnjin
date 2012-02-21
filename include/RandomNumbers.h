@@ -2,6 +2,7 @@
 #define RANDOMNUMBERS_H
 
 #include <boost/random.hpp>
+#include <time.h>
 
 class RandomNumbers
 {

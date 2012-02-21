@@ -44,15 +44,25 @@ int main()
 		
 		cout << action->message << "\n";
 		
-		target->health -= action->damage;
+		if (action->damage > 0)
+		{
+			float modifier = (float)RandomNumbers::get_int(80,150);
+			modifier /= 100;
+			float dmg = (action->damage * modifier);
+			target->health -= dmg;
 		
-		cout << target->name << " takes ";
-		cout << action->damage;
-		cout << " damage.\n";
+			cout << target->name << " takes ";
+			cout << dmg;
+			cout << " damage (modifier=";
+			cout << modifier;
+			cout << ").\n";
+		}
 		
+		/*
 		cout << "Random number: ";
-		cout << RandomNumbers::get_int(1,5);
+		cout << RandomNumbers::get_int(1,150);
 		cout << "\n";
+		*/
 	}
 	
 	if (first_char->health <= 0 && second_char->health <= 0)
