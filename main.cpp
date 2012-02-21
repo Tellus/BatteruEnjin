@@ -19,8 +19,13 @@ int main()
 	
 	int turn = 0;
 	
+	cout << "WELCOME! TO BATTERU! ENJIN!\n\n";
+	cout << "Tonight, you will see:\n";
+	
 	cout << first_char->name << " VERSUS " << second_char->name << "\n";
-	cout << "FIGHT-U\n";
+	
+	cout << "\n\n\nNow... fight-U!\n";
+	
 	Action *action;
 	shared_ptr<Character> actor;
 	shared_ptr<Character> target;
