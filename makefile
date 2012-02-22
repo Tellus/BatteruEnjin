@@ -1,7 +1,7 @@
 # Compiler command.
 CC=g++
 # Flags.
-FLAGS=-c -Wall -std=c++0x
+FLAGS=-c -Wall -std=c++0x -O3
 # Includes.
 INCS=-I. -Iinclude -I/usr/include
 # Source files.
@@ -13,7 +13,7 @@ OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=engine
 
 # Extension
-EXT=.exe
+EXT=
 
 all: $(SOURCES) $(EXECUTABLE)
 

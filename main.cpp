@@ -14,8 +14,11 @@ int main()
 	// On my Win7 x64 MINGW32 this ALWAYS results to 8.
     // cout << rng;
 
-	shared_ptr<Character> first_char(new Sizzlorr());
-	shared_ptr<Character> second_char(new Throbulator());
+	// shared_ptr<Character> first_char(new Sizzlorr());
+	// shared_ptr<Character> second_char(new Throbulator());
+
+	Character *first_char = new Sizzlorr();
+	Character *second_char = new Throbulator();
 	
 	int turn = 0;
 	
@@ -27,8 +30,10 @@ int main()
 	cout << "\n\n\nNow... fight-U!\n";
 	
 	Action *action;
-	shared_ptr<Character> actor;
-	shared_ptr<Character> target;
+//	shared_ptr<Character> actor;
+//	shared_ptr<Character> target;
+	Character *actor;
+	Character *target;
 	while (first_char->health > 0 && second_char->health > 0)
 	{
 		turn++;
