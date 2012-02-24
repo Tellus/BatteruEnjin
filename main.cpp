@@ -5,9 +5,18 @@
 #include "include/Throbulator.h"
 #include "include/Sizzlorr.h"
 
+#include "include/BE_Frontend.h"
+
 using namespace std;
 
 int main()
+{
+	BE_Frontend front;
+
+	return front.OnExecute();
+}
+
+int main_ignore()
 {
 	// Very UNrandom right now. Fuck it.
     // float rng = RandomNumbers::get_number(0,10);
