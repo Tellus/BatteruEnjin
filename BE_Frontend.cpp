@@ -49,7 +49,10 @@ bool BE_Frontend::OnInit()
 
 void BE_Frontend::OnEvent(SDL_Event *event)
 {
-
+	if (event->type == SDL_QUIT)
+	{
+		Running = false;
+	}
 }
 
 void BE_Frontend::OnRender()
