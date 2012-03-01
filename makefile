@@ -6,9 +6,9 @@ FLAGS=-c -Wall -std=c++0x
 INCS=-I. -Iinclude -I/usr/include
 # Linkage!
 #LIB=-L/usr/lib/i386-linux-gnu -lSDL -lSDLmain
-LIB=-lSDL -lSDLmain
+LIB=-lSDL -lSDLmain -lSDL_image
 # Source files.
-SOURCES=BE_Frontend.cpp Action.cpp RandomNumbers.cpp Character.cpp Sizzlorr.cpp Throbulator.cpp main.cpp
+SOURCES=BE_Surface.cpp BE_Frontend.cpp Action.cpp RandomNumbers.cpp Character.cpp Sizzlorr.cpp Throbulator.cpp main.cpp
 # Object versions of sources.
 OBJECTS=$(SOURCES:.cpp=.o)
 #OBJECTS=RandomNumbers.o Character.o Sizzlorr.o
@@ -30,5 +30,5 @@ clean:
 .cpp.o:
 	$(CC) $(FLAGS) $(INCS) $(LIB) $< -o $@
 	
-dev: clean all
+dev: all
 	./$(EXECUTABLE)$(EXT)
