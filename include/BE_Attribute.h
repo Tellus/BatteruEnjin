@@ -1,6 +1,14 @@
+#pragma once
+
 #include "BE_Primarch.h"
 
-class BE_Attribute : BE_Primarch
+namespace BE
 {
+	namespace Primarch
+	{
+		class Attribute : BE::Primarch::Primarch
+		{
 
-};
+		};
+	}
+}

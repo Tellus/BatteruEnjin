@@ -1,16 +1,22 @@
+#pragma once
 
-
-/**
- * This class simplifies loading and working with images in SDL contexts. It
- * can be associated with BE_Entity::Graphic to be 
- */
-class BE_Image: public BE_Graphic
+namespace BE
 {
-	BE_Image(const char *file, bool with_alpha = false);
+	namespace Frontend
+	{
+		/**
+		 * This class simplifies loading and working with images in SDL contexts. It
+		 * can be associated with Entity::Graphic to be 
+		 */
+		class Image: public Graphic
+		{
+			Image(const char *file, bool with_alpha = false);
 
-	BE_Image(const char *file);
+			Image(const char *file);
 
-	BE_Image();
+			Image();
 
 	
-};
+		};
+	}
+}

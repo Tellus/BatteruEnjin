@@ -1,10 +1,18 @@
+#pragma once
+
 #include <SDL/SDL.h>
 #include <SDL/SDL_image.h>
 
-class BE_Surface
+namespace BE
 {
-	public:
-		BE_Surface();
+	namespace Frontend
+	{
+		class Surface
+		{
+			public:
+				Surface();
 
-		static SDL_Surface* LoadFile(const char *path, bool alpha);
-};
+				static SDL_Surface* LoadFile(const char *path, bool alpha);
+		};
+	}
+}

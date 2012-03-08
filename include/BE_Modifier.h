@@ -1,11 +1,15 @@
+#pragma once
 
-/**
- * Interface class for modifiers.
- **/
-class BE_Modifier<P, T, R>
+namespace BE
 {
-	P* parent;
-	T* target;
+	/**
+	 * Interface class for modifiers.
+	 **/
+	class Modifier<P, T, R>
+	{
+		P* parent;
+		T* target;
 
-	virtual R apply() = 0;
+		virtual R apply() = 0;
+	}
 }
