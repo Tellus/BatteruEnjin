@@ -10,6 +10,35 @@
  **/
 class BE_Primarch
 {
-	// Does nothing on its own.
-	virtual unsigned action() = 0;
+	public:
+		/**
+		 * Clones the current object. This is simply intended to be a wrapper around
+		 * a copy-constructor call, but enforces overrides so subclasses will call
+		 * the proper constructor and return it.
+		 * \note All Primarchs (and their children) should implement their own
+		 * clone() method or risk slicing their data when the engine copies data
+		 * during simulation runs.
+		 * \example BE_Character would implement this with the the line
+		 *			return new BE_Character(*this);
+		 * It's a simple, though slightly bulky, mechanic to ensure sufficient
+		 * copies. Also, it makes BE_Primarch abstract :D
+		 **/
+		virtual BE_Primarch* clone() = 0;
+
+		/**
+		 * Determines whether a primarch should be considered volatile (dangerous to
+		 * modify outside of its natural scope, risky to game balance, or other
+		 * reasons). Directly determines how the engine copies objects into a
+		 * BE_GameState. If true, a copy is made and referenced. If false, the
+		 * original is directly referenced. This can potentially save massive
+		 * amounts of memory in controlled implementations. It is recommended
+		 * that any competitive rulesets (where the AI code was not necessarily
+		 * sanitized) contain a high degree of volatility, while highly scripted
+		 * environments (for example processing results of a single-player RPG)
+		 * contain low volatility to increase flexibility of the data set while
+		 * reducing the memory footpring.
+		 * \default The value defaults to true (volatile), making cross-changing
+		 * a more difficult task for malicious code.
+		 **/
+		bool is_volatile = true;
 };
