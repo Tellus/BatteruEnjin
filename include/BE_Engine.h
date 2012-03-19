@@ -127,6 +127,8 @@ namespace BE
 			 * that of the input parameter.
 			 **/
 			GameState* get_gamestate(bool cloned = true);
+			
+			
 		};
 	}
 }

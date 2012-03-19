@@ -1,0 +1,16 @@
+Turn flow:
+
+1. Engine switches turn counter and finds next Character.
+2. Engine retrieves Behaviour for Character.
+3. Engine retrieves current Piggy value.
+4. For each Ability.targets in Character.abilities:
+    a. Engine simulates Ability+Target combination (see #6).
+    b. Engine retrieves Piggy value.
+    c. Engine ties Piggy value to Ability reference.
+5. Engine deems Ability with highest Piggy to be used.
+6. Engine performs Ability usage:
+    a. Engine tests Cost validity (Ability class method?)
+    b. Engine tests Target validity (Ability class method?)
+    c. Engine retrieves Effects.
+    d. For each Effect:
+        I. Invoke Effect.actuate with reference to target. (parameters?)

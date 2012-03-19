@@ -32,25 +32,48 @@ namespace BE
 			virtual ~Character() = 0;
 
 			/**
-			 * Pointer to the Behaviour associated with this Character. Used every time
-			 * the Character needs to take an action.
+			 * The Behaviour associated with this Character. Used every time the
+			 * Character needs to take an action.
 			 **/
-			Behaviour* behaviour;
+			Behaviour behaviour;
 
 			/**
-			 * Vector of all abilities available to the Character. Remember, we except
-			 * actual subclasses since Ability is purely virtual.
+			 * List of all abilities available to the Character. Remember, we
+			 * epxect actual subclasses since Ability is purely virtual.
 			 */
-			vector<Ability> abilities;
-			vector<Resource> resources;
-			vector<Attribute> attributes;
-
+			list<Ability> abilities;
+			
 			/**
-			 * Proxy for calling this->behaviour->get_piggy();
+			 * List of resources associated with the character. Subclasses
+			 * should have their constructor instantiate all relevant resources
+			 * so they will be available during inheritance as well.
+			 **/
+			list<Resource> resources;
+			
+			/**
+			 * List of attributes for the Character.
+			 **/
+			list<Attribute> attributes;
+			
+			/**
+			 * List of items in possession by the Character.
+			 **/
+			list<Item> items;
+
+            /**
+             * List of events bound to the Character. The engine will register
+             * them on initialization and react as appropriate.
+             **/
+            list<Event> events;
+    
+			/**
+			 * Proxy for calling this->behaviour.get_piggy();
 			 * \return The piggy value. Higher is better.
 			 * \see Behaviour::get_piggy()
 			 **/
 			float get_piggy();
+			
+			void notify(const *BE::Engine::Event e);
 		};
 	}
 }

@@ -1,0 +1,16 @@
+<battle>
+    <behaviour id="DefaultBehaviour">
+        <condition>
+            <user><health>50</health></user>
+        </condition>
+        <condition>
+            <enemy><health>-50</health></user>
+        </condition>
+    </behaviour>
+    <ability id="AttackAbility" name="Attack">
+        <
+    </ability>
+    <character>
+        <behaviour ref="DefaultBehaviour" />
+    </character>
+</battle>

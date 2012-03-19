@@ -2,14 +2,16 @@
 
 #include <vector>
 
-// #include "BE_Character.h"
 #include "BE_Primarch.h"
 
 namespace BE
 {
 	namespace Primarch
 	{
-	    class Character;
+	    struct AbilityCostStruct
+	    {
+	        
+	    };
 	
 	    /**
 	     * The Ability Primarch describes an ability usable by a Character (the
@@ -21,7 +23,15 @@ namespace BE
 		class Ability : public Primarch
 		{
 		    public:
-		    std::vector<BE::Primarch::Character> *targets;
+		       // std::vector<BE::Primarch::Character> *targets;
+		       // This REALLY should be Characters, but it avoids circular
+		       // dependencies. And who knows, perhaps abilities should be able
+		       // to enchant weapons and the like?
+		       std::vector<BE::Primarch::Primarch> *targets;
+		       
+		       std::vector<BE::Primarch::Effect> *effects;
+		       
+		       std::vector<
 		};
 	}
 }

@@ -1,0 +1,16 @@
+#pragma once
+
+namespace BE
+{
+	namespace Engine
+	{
+	    /**
+	     * The EventCondition allows for dynamic condition evaluation.
+	     **/
+		class Event : BE::Primarch::Primarch
+		{
+            public:
+                
+		};
+	}
+}

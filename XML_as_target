@@ -1,0 +1,96 @@
+Can the properties of InvaderScript be condensed into XML? I think it should be
+possible. Since we're working with a highly declarative language, hardly any
+imperative (if any!) commands are necessary. As such we are leaving the
+interpretation of input to the backend (the engine) or the compiler. I vote for
+putting it on the engine because it frees up tonnes of considerations for the
+compiler, instead leaving it to be a minimalist "InvaderScript to X" converter.
+If converted to C++, it makes use of the API we're building. If converted to XML
+(or something like it), the engine still determines the best way to use the
+code and can properly create objects matching those necessary by the XML.
+I think this is possible, since InvaderScript is (almost) an alternative XML
+syntax.
+
+We need to make it possible to dynamically create the necessary objects from the
+Primarchs available if we choose the XML path. I highly prefer a non-C++ path
+since it does not require the engine to be compiled together with the Characters
+in order to be functional (I prefer to compile the engine and pass, or pick, the
+necessary files to consider for a scenario/simulation). Of course, regardless of
+path it should be our goal to make the engine in a linkable format and not just
+an executable one (which is basically our unified test).
+
+In order to dynamically create the necessary objects we need to create a very
+loose (prototype-based) class structure. InvaderScript has already defined a
+large amount of pre-defined Primarchs and how their interplay is to work, and we
+know what to expect when it is not strictly defined (i.e. although an Effect has
+no specific contents, we know that the contents are permanent modifier types).
+It should be obvious from this that we require all C++ Primarchs to be
+instantiable (opposed to the currently purely virtual - abstract - classes), and
+every Primarch must be definable purely using other Primarchs and its mandatory
+attributes/members. (On a side note, this method opens the door for dynamically
+extending the capabilities of InvaderScript simply by adding new classes and
+code... in principal, at least). This is basically a recursive definition,
+leaving the heavy lifting up to the contained objects.
+
+Character:
+1 Behaviour
+* Ability
+* Resource
+* Attribute
+* Item
+
+Behaviour:
+* PiggyCondition
+
+PiggyCondition:
+Binds a pointer to a value with a ratio for calculation.
+
+Ability:
+* Cost
+* Target (valid targets, not actual targets)
+* Effect
+
+Effect:
+PermModifier
+
+PermModifier:
+Ties a pointer to a value (which needs to be late bound) with a value change.
+For example (Character)Target.(Primarch:Attribute|Resource)Value +|- change
+Needs a proper identifier so the engine can take rules into consideration... or
+is this legally defined within the Effect in its entirety?
+Simple example: should damage reduction be handled by the Engine on the fly
+(by recognizing what is being changed and reacting to it according to rules) or
+should the Effect combine this in its combination (simple by taking this into
+account in its calculation)? In a competetive environment with self-defined
+Effects, I'd go for the prior. However, in all other scenarios, I think we can
+justify letting the Effect define how to handle this.
+HOWEVER (*2), if a group of Effects obey the same rule, shouldn't we be able to
+remove redundancy? Or is this handled by our concept of Effect constructors?
+Even more so, how the fuck should we implement that kind of constructor in C++?
+I suggest recursive initializers.
+
+On a completely different consideration, inheritance becomes a shit problem when
+converting to anything BUT C++. The chained inheritance becomes much simpler
+with a compiler that can consolidate the chains for us. Can this be put together
+with the dynamic model, so the compiler compresses inheritance to a single type?
+Probably. The InvaderScript compiler could probably compress it without issue.
+A possible fear is whether any identification of polymorphism is lost, something
+that might be relevant if working with higher rules.
+
+THOUGHT: It is impossible to extend the MEANING of Primarchs in InvaderScript
+inheritance, only to add more data to well-defined fields. A subclass of Effect
+will only contain more modifiers (it simply CANNOT contain anything else). If
+you consider the possibility of added fields, you'll realise that the data will
+be either a constant (and can thus be safely replaced or referenced, harmlessly)
+or a reference (with roughly the same consequences. We stll need a proper late
+bound reference system).
+
+PLUGINS: Formalizing a plugin system we may be capable of loading scenarios
+without issue. Might be a bit ugly to have tonnes of shared libs (not at all
+as platform-independant as XML files or other INI types), but it could work if
+necessary. Possibly we might suggest that developers implant the rule set as a
+plugin if its very complex and all Primarch data as XML files. The
+considerations above should lende credence to the notion that we can simply
+compile InvaderScript to XML. In the end, the actual target is inconsequencial;
+the goal of this semester is to define and specify a language and create a 
+compiler in full (parse, decorate, translate to intermediary language). The
+intermediary language might as well be C++ as it could be XML.
