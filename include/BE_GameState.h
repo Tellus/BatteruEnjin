@@ -94,7 +94,19 @@ namespace BE
 		     * \throws GameStateCharacterNotFoundException if the name did not
 		     * match any in the game state.
 		     **/
-		    Character* get_character(const char* name);
+		    BE::Primarch::Character* get_character(const char* name);
+		    
+		    /**
+		     * Retrieves the index of the character who is taking their turn in
+		     * the current state.
+		     * \return Index matching the character list.
+		     * \see 
+		     **/
+		    BE::Primarch::Character *get_active_character();
+		    
+		    /**
+		     * Retrieves all characters in their current turn order.
+		    list<BE::Primarch::Character*> get_characters();
 		};
 	}
 }
