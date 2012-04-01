@@ -1,6 +1,7 @@
 #pragma once
 
 #include "BE_Character.h"
+#include <vector>
 
 namespace BE
 {
@@ -21,7 +22,7 @@ namespace BE
 		     * Accounts for the entirety of our current game state design.
 		     * Everything ties into Characters right now.
 		     **/
-		    vector<Character>* characters;
+		    std::vector<BE::Primarch::Character>* characters;
 		    
 		    /**
 		     * Creates an empty GameState object. Quite, quite useless until
@@ -105,7 +106,8 @@ namespace BE
 		    BE::Primarch::Character *get_active_character();
 		    
 		    /**
-		     * Retrieves all characters in their current turn order.
+		     * Retrieves all characters in their current turn order.* 
+		     **/
 		    list<BE::Primarch::Character*> get_characters();
 		};
 	}

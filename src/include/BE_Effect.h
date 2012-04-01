@@ -12,7 +12,7 @@ namespace BE
 		 * of logic to the imperative version (hell, the processing needed to happen
 		 * somewhere, right?).
 		 **/
-		class Effect : BE::Primarch::Primarch
+		class Effect
 		{
 
 		};

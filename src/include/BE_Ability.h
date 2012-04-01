@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "BE_Primarch.h"
+#include "BE_Effect.h"
 
 namespace BE
 {
@@ -20,7 +20,7 @@ namespace BE
          * to create a formalised "modify/reference" mechanism for arbitrary
          * Primarch data?
          **/
-	    class Ability : public Primarch
+	    class Ability
 	    {
         public:
            // std::vector<BE::Primarch::Character> *targets;
@@ -31,7 +31,6 @@ namespace BE
            
            std::vector<BE::Primarch::Effect> *effects;
            
-           std::vector<
 		};
 	}
 }

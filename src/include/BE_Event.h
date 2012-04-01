@@ -1,21 +1,24 @@
 #pragma once
 
-#include "BE_Primarch.h"
+#include <vector>
+#include "BE_EventCondition.h"
+#include "BE_Engine.h"
+#
 
 namespace BE
 {
-	namespace Primarch
+	namespace Engine
 	{
 	    /**
 	     * The Event class defines triggers, criteria and results of an event.
 	     * They are bound to characters.
 	     **/
-		class Event : BE::Primarch::Primarch
+		class Event
 		{
             public:
-                vector<BE::Engine::EventCondition> conditions;
-                vector<BE::Engine::Ability> abilities;
-
+                    void* message;
+                    
+                    
             
 		};
 	}

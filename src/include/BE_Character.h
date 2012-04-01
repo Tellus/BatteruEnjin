@@ -11,6 +11,8 @@
 #include "BE_Ability.h"
 #include "BE_Attribute.h"
 #include "BE_Resource.h"
+#include "BE_Item.h"
+#include "BE_Event.h"
 
 using namespace std;
 
@@ -26,7 +28,7 @@ namespace BE
 		 * a Character (possibly the same one). I made a pretty hand-drawn flowchart for
 		 * this.
 		 */
-		class Character : public Primarch
+		class Character
 		{
 			public:
 			virtual ~Character() = 0;
@@ -73,7 +75,7 @@ namespace BE
 			 **/
 			float get_piggy();
 			
-			void notify(const *BE::Engine::Event e);
+			void notify(const BE::Engine::Event *e);
 		};
 	}
 }

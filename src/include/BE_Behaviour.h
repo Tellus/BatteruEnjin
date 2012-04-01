@@ -10,7 +10,7 @@ namespace BE
 		 * The Behaviour primarch dictates the factors that come into play when the
 		 * engine determines the best course of action for a given Character.
 		 **/
-		class Behaviour : public Primarch
+		class Behaviour
 		{
 		    public:
 

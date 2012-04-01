@@ -6,7 +6,7 @@ namespace BE
 {
 	namespace Primarch
 	{
-		class Attribute : BE::Primarch::Primarch
+		class Attribute
 		{
 
 		};
