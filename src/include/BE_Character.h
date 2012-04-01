@@ -5,16 +5,13 @@
 #include <list>
 
 // From custom code.
-#include "BE_Primarch.h"
 #include "BE_Behaviour.h"
 #include "BE_Effect.h"
 #include "BE_Ability.h"
 #include "BE_Attribute.h"
 #include "BE_Resource.h"
 #include "BE_Item.h"
-#include "BE_Event.h"
-
-using namespace std;
+#include "BE_EventListener.h"
 
 namespace BE
 {
@@ -31,42 +28,47 @@ namespace BE
 		class Character
 		{
 			public:
+			Character();
 			virtual ~Character() = 0;
 
 			/**
 			 * The Behaviour associated with this Character. Used every time the
 			 * Character needs to take an action.
+			 * \note We're forced to use pointer over value as a value would
+			 * force the code to instantiate the otherwise abstract class. This
+			 * is not required for pointers.
 			 **/
-			Behaviour behaviour;
+			BE::Primarch::Behaviour* behaviour;
 
 			/**
 			 * List of all abilities available to the Character. Remember, we
 			 * epxect actual subclasses since Ability is purely virtual.
 			 */
-			list<Ability> abilities;
+			std::list<BE::Primarch::Ability> abilities;
 			
 			/**
 			 * List of resources associated with the character. Subclasses
 			 * should have their constructor instantiate all relevant resources
 			 * so they will be available during inheritance as well.
 			 **/
-			list<Resource> resources;
+			std::list<BE::Primarch::Resource> resources;
 			
 			/**
 			 * List of attributes for the Character.
 			 **/
-			list<Attribute> attributes;
+			std::list<BE::Primarch::Attribute> attributes;
 			
 			/**
 			 * List of items in possession by the Character.
 			 **/
-			list<Item> items;
+			std::list<BE::Primarch::Item> items;
 
             /**
-             * List of events bound to the Character. The engine will register
-             * them on initialization and react as appropriate.
+             * Event listeners. These mirror the Event list of a langname
+			 * Character. We realised that the Event primarchs aren't really
+			 * events, they're listeners.
              **/
-            list<Event> events;
+            std::list<BE::Primarch::EventListener> listeners;
     
 			/**
 			 * Proxy for calling this->behaviour.get_piggy();
@@ -75,7 +77,13 @@ namespace BE
 			 **/
 			float get_piggy();
 			
-			void notify(const BE::Engine::Event *e);
+			/** INITIALIZATION METHODS - ABSTRACT **/
+		protected:
+			virtual void set_attributes() = 0;
+			virtual void set_resources() = 0;
+			virtual void set_behaviour() = 0;
+			virtual void set_abilities() = 0;
+			virtual void set_event_listeners() = 0;
 		};
 	}
 }

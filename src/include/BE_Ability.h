@@ -2,12 +2,15 @@
 
 #include <vector>
 
+#include "BE_Primarch.h"
 #include "BE_Effect.h"
 
 namespace BE
 {
 	namespace Primarch
 	{
+		class Character;
+	
 	    struct AbilityCostStruct
 	    {
 	        
@@ -23,14 +26,41 @@ namespace BE
 	    class Ability
 	    {
         public:
-           // std::vector<BE::Primarch::Character> *targets;
-           // This REALLY should be Characters, but it avoids circular
-           // dependencies. And who knows, perhaps abilities should be able
-           // to enchant weapons and the like?
-           std::vector<BE::Primarch::Primarch> *targets;
+           /**
+		   
+		    */
+           std::vector<Primarch*> targets;
            
-           std::vector<BE::Primarch::Effect> *effects;
+		   /**
+		    * Vector of Effects related to this ability. Each one will have
+			* methods invoked to affect the active target.
+			*/
+           std::vector<BE::Primarch::Effect> effects;
            
+		   /**
+		    * Returns a vector of supported types in string format.
+			* \return vector<string> of supported types.
+			*/
+		   virtual std::vector<std::string> get_supported_types();
+		   
+		   /**
+		    * Applies the ability to a target. Should validate the target, then
+			* apply a series of effects on it.
+			* \param target The target of the ability. Must be of the valid
+			* types for the ability.
+			*/
+		   void use(Primarch *target);
+		   
+		   /**
+		    * Applies the ability to a vector of targets. Otherwise identical to
+			* use(Primarch).
+			* \param targets Vector of targets to target. All of them should be
+			* valid targets for the ability.
+			**/
+		   void use(std::vector<Primarch> *targets);
+		   
+		protected:
+			
 		};
 	}
 }

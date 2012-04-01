@@ -14,7 +14,6 @@ namespace BE
         class RuleSet
         {
         public:
-            /**@{*/
             /**
              * Compare method used by the Engine when determining turn order. The
              * function should work just like a standard compare function when used on
@@ -28,9 +27,7 @@ namespace BE
              * this method for several pairs of characters until the turn order is
              * fully determined.
              **/
-            virtual bool turn_cmp(BE::Primarch::Character c1, BE::Primarch::Character c2);
             virtual bool turn_cmp(BE::Primarch::Character *c1, BE::Primarch::Character *c2);
-            /**@}*/
             
             /**
              * Method called by Engine to determine who has won a scenario.
@@ -47,6 +44,6 @@ namespace BE
              * \return True if a winner can be decided, false otherwise.
              **/
             virtual bool has_winner(BE::Engine::GameState *cur_state);
-        }
+        };
     }
 };

@@ -58,7 +58,7 @@ namespace BE
 			 * Contains references to all characters in play. The vector is unsorted if
 			 * no rules pertaining to turn order were passed.
 			 **/
-			vector<BE::Primarch::Character>* characters;
+			std::vector<BE::Primarch::Character>* characters;
 
 			/**
 			 * Determines if the highest or lowest turn number is considered the first.

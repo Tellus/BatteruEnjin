@@ -7,7 +7,8 @@
  * - Turn order is first in, first out.
  * - The winner is the character left with positive health.
  **/
-class SimpleRuleSet
+class SimpleRuleSet : BE::Engine::RuleSet
 {
-
+	bool turn_cmp(BE::Primarch::Character *c1, BE::Primarch::Character *c2);
+	bool has_winner(BE::Engine::GameState *cur_state);
 };

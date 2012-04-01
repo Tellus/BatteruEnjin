@@ -1,7 +1,8 @@
 #pragma once
 
-#include "BE_Character.h"
 #include <vector>
+
+#include "BE_Character.h"
 
 namespace BE
 {
@@ -22,7 +23,7 @@ namespace BE
 		     * Accounts for the entirety of our current game state design.
 		     * Everything ties into Characters right now.
 		     **/
-		    std::vector<BE::Primarch::Character>* characters;
+		    std::vector<BE::Primarch::Character> characters;
 		    
 		    /**
 		     * Creates an empty GameState object. Quite, quite useless until
@@ -62,7 +63,7 @@ namespace BE
 		     * \throws GameStateDuplicateCharacterException if you try to add an
 		     * already existing Character in the state.
 		     **/
-		    void add_character(Character* to_add);
+		    void add_character(BE::Primarch::Character* to_add);
 		    
 		    /**
 		     * Removes the referenced Character from the game state.
@@ -70,7 +71,7 @@ namespace BE
 		     * \note This method uses pointer arithmetic to identify and remove
 		     * the Character.
 		     **/
-		    void remove_character(Character* to_add);
+		    void remove_character(BE::Primarch::Character* to_add);
 		    
 		    /**
 		     * Removes a Character from the game state.
@@ -79,14 +80,6 @@ namespace BE
 		     * match any of the Characters in the game state.
 		     **/
 		    void remove_character(const char* name);
-		    
-		    /**
-		     * Removes a Character from the game state by its unique id.
-		     * \param id The BE Identifier assigned to the Character.
-		     * \todo Figure out if this is useful, considering the pointer
-		     * overload might be even more broad.
-		     **/
-		    void remove_character(BE::Engine::Identifier id);
 		    
 		    /**
 		     * Retrieves a Character from the game state.
@@ -108,7 +101,7 @@ namespace BE
 		    /**
 		     * Retrieves all characters in their current turn order.* 
 		     **/
-		    list<BE::Primarch::Character*> get_characters();
+		    std::vector<BE::Primarch::Character*> get_characters();
 		};
 	}
 }
